@@ -7,17 +7,17 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如何用Hexo发表文章1.建议先把文章写完，保存为md 2.copy该文章到博客所在文件夹的source/_posts/目录下 3.执行下列命令:hexo cleanhexo generatehexo deploy">
+  <meta name="description" content="Java-ListList 是用来管理对象的集合接口，代表的是有序的队列。  List有以下几种: 1.AbstractList 略  2.AbstractSequentialList 略  3.ArrayList：是一个数组队列，相当于动态数组。由数组实现，线程不同步（非线程安全的）。 随机访问率高，随机插入、删除效率低。 4.LinkedList：是双向链表，查询慢，增删快。 5.Vector">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2018/08/28/hexo发表文章/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/28/Java List知识点小结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="如何用Hexo发表文章1.建议先把文章写完，保存为md 2.copy该文章到博客所在文件夹的source/_posts/目录下 3.执行下列命令:hexo cleanhexo generatehexo deploy">
+<meta property="og:description" content="Java-ListList 是用来管理对象的集合接口，代表的是有序的队列。  List有以下几种: 1.AbstractList 略  2.AbstractSequentialList 略  3.ArrayList：是一个数组队列，相当于动态数组。由数组实现，线程不同步（非线程安全的）。 随机访问率高，随机插入、删除效率低。 4.LinkedList：是双向链表，查询慢，增删快。 5.Vector">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-28T11:16:16.743Z">
+<meta property="og:updated_time" content="2018-08-28T12:07:05.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="如何用Hexo发表文章1.建议先把文章写完，保存为md 2.copy该文章到博客所在文件夹的source/_posts/目录下 3.执行下列命令:hexo cleanhexo generatehexo deploy">
+<meta name="twitter:description" content="Java-ListList 是用来管理对象的集合接口，代表的是有序的队列。  List有以下几种: 1.AbstractList 略  2.AbstractSequentialList 略  3.ArrayList：是一个数组队列，相当于动态数组。由数组实现，线程不同步（非线程安全的）。 随机访问率高，随机插入、删除效率低。 4.LinkedList：是双向链表，查询慢，增删快。 5.Vector">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hexo发表文章" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java List知识点小结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/28/hexo发表文章/" class="article-date">
-  <time datetime="2018-08-28T11:13:30.010Z" itemprop="datePublished">2018-08-28</time>
+    <a href="/2018/08/28/Java List知识点小结/" class="article-date">
+  <time datetime="2018-08-28T12:07:05.711Z" itemprop="datePublished">2018-08-28</time>
 </a>
     
   </div>
@@ -76,14 +76,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="如何用Hexo发表文章"><a href="#如何用Hexo发表文章" class="headerlink" title="如何用Hexo发表文章"></a>如何用Hexo发表文章</h3><p>1.建议先把文章写完，保存为md</p>
-<p>2.copy该文章到博客所在文件夹的source/_posts/目录下</p>
-<p>3.执行下列命令:<br>hexo clean<br>hexo generate<br>hexo deploy</p>
+        <h3 id="Java-List"><a href="#Java-List" class="headerlink" title="Java-List"></a>Java-List</h3><p>List 是用来管理对象的集合接口，代表的是有序的队列。</p>
+<hr>
+<p>List有以下几种:</p>
+<p>1.AbstractList 略 </p>
+<p>2.AbstractSequentialList 略 </p>
+<p>3.ArrayList：是一个数组队列，相当于动态数组。由数组实现，线程不同步（非线程安全的）。</p>
+<p>随机访问率高，随机插入、删除效率低。</p>
+<p>4.LinkedList：是双向链表，查询慢，增删快。</p>
+<p>5.Vector：是矢量队列，与ArrayList一样，是一个动态数组，由数组实现。</p>
+<p>6.Stack：是栈，继承于Vector，先进后出。</p>
+<hr>
+<p>使用场景</p>
+<p>1.快速插入、删除元素：LinkList</p>
+<p>2.快速访问元素：ArrayList</p>
+<p>3.单线程或仅被单线程操作：ArrayList</p>
+<p>4.多线程或被多个线程操作 ：Vector</p>
+<hr>
+<p>LinkedList和ArrayList的区别</p>
+<p>1.在插入元素时，由于LinkedList是双向链表，在查找要插入节点的位置index时，会有一个加速动作：若inde&lt;链表长度1/2，向前查找；若&gt;，向后查找。而ArrayList在插入时，会移动index后的所有元素。</p>
+<p>2.在访问元素时，ArrayList可以直接返回数组中index位置的元素，而LinkedList则是与插入元素时寻找index位置相同，需要进行查找。</p>
+<hr>
+<p>LinkedList和Vector的区别</p>
+<p>1.LinkedList适用于单线程，Vector适用于多线程。</p>
+<p>2.LinkedList支持序列化，Vector不支持。</p>
+<p>3.Vector比LinkedList多一个指定容量增加系数的构造函数.</p>
+<p>4.容量增加方式不同。</p>
+<p>5.Vector支持Enumeration去遍历，LinkedList不支持。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/hexo发表文章/" data-id="cjldo4i180002vkw1mpr4b91g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/28/Java List知识点小结/" data-id="cjldo4i160001vkw1jgjrb1d0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -92,19 +116,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/08/28/Java List知识点小结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/13/hexo安装和部署/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/08/28/hexo发表文章/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">hexo安装和部署</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>
