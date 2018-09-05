@@ -5,15 +5,19 @@
   
 
   
-  <title>Hexo</title>
+  <title>Java基础知识-集合类 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="JAVA基础知识面向对象-集合类 ArrayListArrayList 是一个数组队列，相当于动态数组。它由数组实现，随机访问效率高，随机插入、随机删除效率低。ArrayList是非线程安全的。查询快（随意访问或顺序访问），增删慢。整体清空快，线程不同步(非线程安全)。数组长度是可变的百分之五十延长。多线程环境下可以考虑用Collections.synchronizedList(List l)函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础知识-集合类">
+<meta property="og:url" content="http://yoursite.com/2018/09/05/Java基础知识-集合类/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JAVA基础知识面向对象-集合类 ArrayListArrayList 是一个数组队列，相当于动态数组。它由数组实现，随机访问效率高，随机插入、随机删除效率低。ArrayList是非线程安全的。查询快（随意访问或顺序访问），增删慢。整体清空快，线程不同步(非线程安全)。数组长度是可变的百分之五十延长。多线程环境下可以考虑用Collections.synchronizedList(List l)函数">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-05T06:14:37.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Java基础知识-集合类">
+<meta name="twitter:description" content="JAVA基础知识面向对象-集合类 ArrayListArrayList 是一个数组队列，相当于动态数组。它由数组实现，随机访问效率高，随机插入、随机删除效率低。ArrayList是非线程安全的。查询快（随意访问或顺序访问），增删慢。整体清空快，线程不同步(非线程安全)。数组长度是可变的百分之五十延长。多线程环境下可以考虑用Collections.synchronizedList(List l)函数">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Java基础知识-集合类" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java基础知识-集合类" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/05/Java基础知识-集合类/" class="article-date">
   <time datetime="2018-09-05T06:14:15.000Z" itemprop="datePublished">2018-09-05</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/05/Java基础知识-集合类/">Java基础知识-集合类</a>
+    <h1 class="article-title" itemprop="name">
+      Java基础知识-集合类
     </h1>
   
 
@@ -141,270 +143,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-spring-boot-hibernate-踩坑记-一" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/29/spring-boot-hibernate-踩坑记-一/" class="article-date">
-  <time datetime="2018-08-29T11:43:19.000Z" itemprop="datePublished">2018-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/spring-boot-hibernate-踩坑记-一/">spring boot + hibernate 踩坑记(一)</a>
-    </h1>
+    <a href="/2018/08/29/spring-boot-hibernate-踩坑记-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spring boot + hibernate 踩坑记(一)</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自从实习以来，一直用的都是spring boot + hibernate，一方面不用写sql真的方便很多，另一方面真的很多坑，而且大多数是自己种下的坑。</p>
-<p>最近和小伙伴在写一个项目，我一个人负责后端。就今天遇到的一些有关hibernate的坑，想和大家分享一下。也希望大家在遇到这种问题时，能给到大家帮助。</p>
-<hr>
-<p>1.用sql写自定义查询语句时，要注意hibernate不仅仅会执行你所写的sql语句，还会执行一条select count() … where …的语句。</p>
-<p>当所查询的语句是一个字段或者一个实体对象时，count默认为select后的字段或者实体对象。</p>
-<pre><code>：
-Hibernate: select name from user  where uid=? limit ?
-Hibernate: select count(name) from sign where uid =?
-
-Hibernate: select user from user  where uid=? limit ?
-Hibernate: select count(user) from user where uid =?
-</code></pre><p>当所查询的语句包含多个字段时，count默认为where。这时就会报错，提示数据库语句有误。大家只要对nativeQuery进行修改即可。</p>
-<pre><code>：
-Hibernate: select name, age from user  where uid=? limit ?
-Hibernate: select count(where) from user where uid =?
-
-@Query(value = &quot;select  name, age from user  where uid=?1&quot;, nativeQuery = true,countQuery = &quot;select count(name) from user where uid =?1&quot;)
-</code></pre><hr>
-<p>2.想要给数据库的某个字段设置初值，不建议用如下方法，反正我在实际操作中，数据库并没设置初值成功。</p>
-<pre><code>@Column(columnDefinition=&quot;varchar(32) default &apos;3&apos;&quot;)
-</code></pre><p>大家更不要在建表时进行赋值，我就是这样给自己埋下一个坑，在查询时一直报错。</p>
-<p>大家可以在向数据库添加一条数据的时候，设置初始值，我感觉这个方法比较靠谱。</p>
-<hr>
-<p>3.在写自定义分页时，网上查询的很多方法都没有用。我目前用到的只是查询部分字段的分页查询，还是很简单的。但是用网上所说的model、pageHelper等等方法，都没有成功。我是用以下来实现的，大家可以参考一下。</p>
-<pre><code>：
-@Query(value = &quot;select  name, age from user  where uid=?1 &quot;, nativeQuery = true,countQuery = &quot;select count(name) from user where uid=?1 &quot;)
-Page&lt;List&lt;Map&lt;String, Object&gt;&gt;&gt; findByStatus(Long uid, Pageable pageable);
-</code></pre><p>我觉得这个对呀部分字段的分页查询来说，是最简单一个方法了。JPA已经把分页都做好了，我们只需要将分页和自定义查询结合。不过起初的时候，碰到很多坑。我至今还有一个疑惑。倘若我的sql语句写成如下，则会报错提示：List内没有cloum u。我后面找到了成功的方法，也就没有深究这个原因了。</p>
-<pre><code>：
-select  name, age from user u  where u.uid=?1
-</code></pre><p>总结一下，jpa是好用，很方便，但是它的底层实现如果有机会还是要去深入了解一下的。而且我在学习的过程中，遇到许多问题，是网上也没怎么查到的。所以，这些坑，只能自己慢慢踩、慢慢填了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/spring-boot-hibernate-踩坑记-一/" data-id="cjlor0af70004lww1u4kxdinn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Java-List-学习小结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/28/Java-List-学习小结/" class="article-date">
-  <time datetime="2018-08-28T12:17:09.000Z" itemprop="datePublished">2018-08-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/28/Java-List-学习小结/">Java List 学习小结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Java-List"><a href="#Java-List" class="headerlink" title="Java-List"></a>Java-List</h3><p>List 是用来管理对象的集合接口，代表的是有序的队列。</p>
-<hr>
-<p>List有以下几种:</p>
-<p>1.AbstractList 略 </p>
-<p>2.AbstractSequentialList 略 </p>
-<p>3.ArrayList：是一个数组队列，相当于动态数组。由数组实现，线程不同步（非线程安全的）。</p>
-<p>随机访问率高，随机插入、删除效率低。</p>
-<p>4.LinkedList：是双向链表，查询慢，增删快。</p>
-<p>5.Vector：是矢量队列，与ArrayList一样，是一个动态数组，由数组实现。</p>
-<p>6.Stack：是栈，继承于Vector，先进后出。</p>
-<hr>
-<p>使用场景</p>
-<p>1.快速插入、删除元素：LinkList</p>
-<p>2.快速访问元素：ArrayList</p>
-<p>3.单线程或仅被单线程操作：ArrayList</p>
-<p>4.多线程或被多个线程操作 ：Vector</p>
-<hr>
-<p>LinkedList和ArrayList的区别</p>
-<p>1.在插入元素时，由于LinkedList是双向链表，在查找要插入节点的位置index时，会有一个加速动作：若inde&lt;链表长度1/2，向前查找；若&gt;，向后查找。而ArrayList在插入时，会移动index后的所有元素。</p>
-<p>2.在访问元素时，ArrayList可以直接返回数组中index位置的元素，而LinkedList则是与插入元素时寻找index位置相同，需要进行查找。</p>
-<hr>
-<p>LinkedList和Vector的区别</p>
-<p>1.LinkedList适用于单线程，Vector适用于多线程。</p>
-<p>2.LinkedList支持序列化，Vector不支持。</p>
-<p>3.Vector比LinkedList多一个指定容量增加系数的构造函数.</p>
-<p>4.容量增加方式不同。</p>
-<p>5.Vector支持Enumeration去遍历，LinkedList不支持。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/Java-List-学习小结/" data-id="cjlor0aer0000lww16qsabdp6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo发表文章" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/28/hexo发表文章/" class="article-date">
-  <time datetime="2018-08-28T12:14:03.000Z" itemprop="datePublished">2018-08-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/28/hexo发表文章/">hexo发表文章</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.建议先把文章写完，保存为md</p>
-<p>2.copy该文章到博客所在文件夹的source/_posts/目录下</p>
-<p>3.执行下列命令:<br>hexo clean<br>hexo generate<br>hexo deploy</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/28/hexo发表文章/" data-id="cjlor0af70003lww1hseepeqg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo安装和部署" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/13/hexo安装和部署/" class="article-date">
-  <time datetime="2018-08-13T11:40:04.000Z" itemprop="datePublished">2018-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/13/hexo安装和部署/">hexo安装和部署</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.安装Git Bash</p>
-<p>2.安装Node.Js</p>
-<p>3.安装Hexo<br>· 先新建一个文件夹，在文件夹内右键点击“Git Bash Here”或者是“在此次打开PowerShell窗口”<br>· 安装Hexo命令: npm i -g hexo<br>· 查看版本命令: hexo -v<br>· 初始化命令: hexo init，然后可以看到文件夹内生成了一些文件</p>
-<p>4.github本地环境配置，配置好了可以忽略</p>
-<p>5.github上新建一个repo，名称为***.github.io</p>
-<p>6.修改新建文件夹内名为_config.yml的文件的配置，注意，冒号后面都有一个半角空格<br>deploy:<br>  type: git<br>  repo: <a href="https://github.com/YourgithubName/YourgithubName.github.io.git" target="_blank" rel="noopener">https://github.com/YourgithubName/YourgithubName.github.io.git</a><br>  branch: master</p>
-<p>7.继续敲命令行，依次执行下列命令<br>hexo clean<br>hexo generate<br>hexo server<br>打开浏览器输入：<a href="http://localhost:4000，就可以看到了" target="_blank" rel="noopener">http://localhost:4000，就可以看到了</a></p>
-<p>8.上传到github<br>· 安装：npm install hexo-deployer-git –save<br>· 执行下列命令:<br>hexo clean<br>hexo generate<br>hexo deploy</p>
-<p>9.我在安装过程中遇到的bug<br>· 安装Hexo时，提示“no longer maintained”，npm换源即可解决<br>· 在执行“hexo deploy”时，提示“bash：/dev/tty：No such device or address”，检查一些_config.yml配置文件有没有哪里写错。其中repo要填SSH Key。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/13/hexo安装和部署/" data-id="cjlor0afn0005lww1hd1y9o5f" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/13/hello-world/" class="article-date">
-  <time datetime="2018-08-13T09:59:23.295Z" itemprop="datePublished">2018-08-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/13/hello-world/" data-id="cjlor0af70002lww151xd3dt7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
